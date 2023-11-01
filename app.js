@@ -19,8 +19,15 @@ const result = document.querySelector('.lorem-text');
 form.addEventListener('submit', function(e) {
   e.preventDefault();
   const value = parseInt(amount.value);
-  if (isNaN(value) || vale > 9) {
-    result.innerHTML = `<p class ="result">${text[0]}</P>`
-  }
-  
+  const random = Math.floor(Math.random() * text.length);
+  if (isNaN(value) || value <= 0 || value > 9) {
+    result.innerHTML = `<p class ="result">${text[random]}</P>`;
+  }else{
+    let tempText = text.slice(0, value);
+    let newTempText = tempText.map(function(content){ 
+      return `<p class = "result">${content}</p>`;
+  })
+  .join("");
+    result.innerHTML = newTempText;
+  };
 });
